@@ -64,5 +64,8 @@ export default {
 </script>
 
 <style>
+.height{
+  min-height: 1280px;
+}
 
 </style>

@@ -34,17 +34,17 @@
                         v-model="sorting"
                         mandatory
                     >
-                        <v-btn>Terbaru</v-btn>
                         <v-btn>Terakhir</v-btn>
+                        <v-btn>Terbaru</v-btn>
                     </v-btn-toggle>
                 </v-card>
             </v-col>
-            <v-col cols="6"  >
+            <v-col cols="9">
                     <News :datasets="item" :loading="loading" ></News>
             </v-col>
-            <v-col cols="3">
+            <!-- <v-col cols="3">
 
-            </v-col>
+            </v-col> -->
         </v-row>
             <div class="text-center">
                 <v-pagination
@@ -59,7 +59,7 @@
 </template>
 
 <script> 
-import {getBerita, getBeritaTable, searchBeritaByJenis, searchBeritaBySorting, searchBeritaByJenisAndSorting} from "../../plugins/api";
+import {getBerita, getBeritaTable, searchBeritaByJenis, searchBeritaBySorting, searchBeritaByJenisAndSorting} from "@Plugins/api";
 import News from "./GetBerita";
 export default {
     data : () => ({

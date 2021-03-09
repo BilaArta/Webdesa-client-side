@@ -1,23 +1,19 @@
 <template>
-    <header>
+    <header class="ml-1 mr-1">
         <v-app-bar
-            color="red"
-            dense
-            dark
+        class="pl-4 pr-4"
         >
             <v-app-bar-nav-icon>LOGO</v-app-bar-nav-icon>
             <v-spacer></v-spacer>
             <v-toolbar-title>WEBSITE DESA TIBUBIU</v-toolbar-title>
 
             <v-spacer></v-spacer>
-                <router-link to="/">
+                <router-link to="/berita">
                     <v-btn
                         v-if="!token"
                         elevation="4"
-                        small
-                        tile
-                        class="mr-2 ml-2 black--text"
-                        color="grey lighten-4"
+                        medium
+                        
                     >
                         Beranda              
                     </v-btn>
@@ -26,7 +22,7 @@
                     <v-btn
                         v-if="!token"
                         elevation="4"
-                        small
+                        medium
                         tile
                         class="mr-2 ml-2 black--text"
                         color="grey lighten-4"

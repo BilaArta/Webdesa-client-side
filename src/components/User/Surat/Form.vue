@@ -73,7 +73,10 @@ export default {
         data.append('keterangan', this.keterangan)
         data.append('id',this.$route.params.id)
         data.append('subjek',surat)
-        sendMail(data).then(result => console.log(result))
+        sendMail(data).then(result => {
+            console.log(result);
+            alert('Surat berhasil dikirim.')
+        })
           .catch(err => console.log(err))
       }
     },

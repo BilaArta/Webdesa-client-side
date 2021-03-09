@@ -2,7 +2,7 @@
   <v-app>
         <Header :token="token" @updateToken="checkToken"></Header>
         <main>
-            <v-container fluid>
+            <v-container>
                 <router-view  @updateToken="checkToken"></router-view>
             </v-container>
         </main>
