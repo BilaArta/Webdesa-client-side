@@ -15,6 +15,7 @@ export default {
             if(res.error == "Unauthorized"){
                 this.$router.push({name: 'Admin'})
             }else{
+                console.log('update token');
                 this.$emit('updateToken', true)
             }
         })

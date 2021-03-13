@@ -11,25 +11,31 @@
                 class="pa-4"
             >
                 <v-card-title>
-                    {{datasets.judul}}
+                    <v-chip
+                        label
+                    >
+                        {{datasets.judul}}
+                    </v-chip>
                 </v-card-title>
                 <v-card-subtitle>
                     {{datasets.jenis}}
+                    {{datasets.admin}}
                 </v-card-subtitle>
                 <hr class="mt-n3 mb-n2">
                 <v-card-text>
                     <span>{{getDate[0]}} : {{getDate[1]}}</span>
                     <br>
                     <span class="black--text">
-                        {{datasets.deskripsi}}
+                        {{datasets.deskripsi.slice(0, 100)}}
                     </span>
                 </v-card-text>
                 <v-img
                     height="auto"
                     width="auto"
-                    :src="path + datasets.file"
                     alt="Card image"
+                    :src="datasets.file"
                 >
+                    <!-- :src="path + datasets.file" -->
                 </v-img>
             </v-card>
         </v-skeleton-loader>

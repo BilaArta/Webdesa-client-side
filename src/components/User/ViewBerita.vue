@@ -5,12 +5,29 @@
             :key="i"
             no-gutters
         >
+        <v-fab-transition
+
+        >
+            <v-btn
+                v-show="fab"
+                color="primary"
+                fixed
+                dark
+                bottom
+                right
+                fab
+                icon
+                @click="btnTopScroll"
+            >
+                <v-icon color="black">mdi-chevron-up</v-icon>
+            </v-btn>
+        </v-fab-transition>
             <v-col cols="3">
                 <v-card 
                     v-if="i == 0"
                     elevation="4"
                     outlined
-                    class="pa-4 sticky-card"
+                    class="pa-4"
                 >
                     <p class="subtitle-2" v-text="'Pencarian berdasarkan judul berita :'"></p>
                     <v-autocomplete
@@ -63,6 +80,7 @@ import {getBerita, getBeritaTable, searchBeritaByJenis, searchBeritaBySorting, s
 import News from "./GetBerita";
 export default {
     data : () => ({
+        fab : false,
         news: [],
         sorting: 0,
         isSorted: false,
@@ -91,6 +109,14 @@ export default {
             }else{
                 this.getDataBerita()
             }
+        },
+        handleScroll () {
+            // console.log(event);
+            this.fab = window.scrollY > 0;
+        },
+        btnTopScroll(){
+            this.fab = false
+            window.scrollTo(0,0)
         },
         getJudulAndJenis(){
             getBeritaTable().then((res) => {
@@ -143,7 +169,11 @@ export default {
         }
 
     },
+    destroyed () {
+        window.removeEventListener('scroll', this.handleScroll);
+    },
     created() {
+        window.addEventListener('scroll', this.handleScroll);
         this.loading = true
         // this.breakPoint = this.$vuetify.breakpoint.name
         this.getJudulAndJenis();

@@ -213,6 +213,7 @@ export default {
             { text: '', value: 'data-table-expand' },
         ],
         search: '',
+        loading: true,
     }),
     created() {
         this.loading = true;

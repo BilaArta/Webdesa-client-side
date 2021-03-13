@@ -8,7 +8,7 @@
                 Input Berita
             </v-tab>
             <v-tab>
-                Preview
+                Surat Penduduk
             </v-tab>
 
             <v-tab-item>
@@ -28,7 +28,7 @@
             </v-tab-item>
             <v-tab-item>
                 <v-card flat>
-                    <div>Preview</div>
+                    <TableSurat></TableSurat>
                 </v-card>
             </v-tab-item>
          </v-tabs>
@@ -42,11 +42,13 @@
 import Form from "./InputBerita";
 import Tableberita from "./TabelBerita";
 import { getUser } from "../../plugins/api";
+import TableSurat from './Surat/Container';
 
 export default {
     components: {
         Form,
         Tableberita,
+        TableSurat
     },
     data: () => ({
         dataset: [],
@@ -54,13 +56,13 @@ export default {
         admin: {},
     }),
     created(){
-    if(!localStorage.getItem('token')){
-      this.$router.push({name: "Home"})
-    }
+    // if(!localStorage.getItem('token')){
+    //   this.$router.push({name: "Home"})
+    // }
     },
     methods: {
         checkUser(){
-            getUser().then((res) => console.log(res))
+            getUser().then((res) => console.log(res.data))
         }
     }
 }

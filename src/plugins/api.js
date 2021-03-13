@@ -1,7 +1,9 @@
 import axios from "axios"
 import { setHeaderToken, removeHeaderToken } from "../utils/auth";
-axios.defaults.baseURL = process.env.VUE_APP_apiUrl
 
+if (process.env.NODE_ENV == 'local'){
+    axios.defaults.baseURL = process.env.VUE_APP_apiUrl
+}
 
 export function login(email, password) {
     return new Promise((resolve, rejected) => {
@@ -121,9 +123,42 @@ export function getUser(){
 }
 
 export function checkWarga(nik){
+    
     return new Promise((resolve, rejected) => {
-        axios.post('/warga', nik)
-            .then((res) => resolve(res.data))
-            .catch(err => rejected(err))
+        axios.get(`/penduduk/${nik.nik}`)
+            .then((res) => {
+                console.log(res.data)
+                resolve(res.data)
+            })
+            .catch(err => {
+                rejected(err)
+            })
+    })
+}
+
+export function getPenduduk(){
+    return new Promise((resolve, reject) => {
+        axios.get('/penduduk')
+            .then((result) => resolve(result))
+            .catch((err) => reject(err))
+    })
+}
+
+export function getSuratPenduduk(id){
+    return new Promise((resolve, reject) => {
+        axios.get(`/penduduk/${id}/getSurat`)
+            .then((result) => {
+                // console.log(result);
+                resolve(result.data);
+            })
+            .catch((err) => reject(err))
+    })
+}
+
+export function getPendudukSurat(){
+    return new Promise((resolve, reject) => {
+        axios.get(`/PendudukSurat`)
+            .then((result) => resolve(result.data))
+            .catch((err) => reject(err))
     })
 }

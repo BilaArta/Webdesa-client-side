@@ -29,12 +29,12 @@ const routes = [
         component: () => import('../views/Surat')
       },
       {
-        path: '/Dashboard',
+        path: '/admin',
         name: 'Admin',
         component: () => import('../views/Home')
       },
       {
-        path: '/Dashboard/:id',
+        path: '/admin/:id',
         name: 'Dashboard Admin',
         component: () => import( '../views/Admin.vue')
       },
@@ -43,7 +43,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'history', 
+  mode: null, 
   routes
 })
 

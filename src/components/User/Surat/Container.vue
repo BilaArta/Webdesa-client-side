@@ -1,4 +1,19 @@
 <template>
+<div>
+    <v-btn
+        elevation="4"
+        medium
+        tile
+        class="mr-2 ml-2 black--text"
+        color="grey lighten-4"
+    >
+        <v-badge
+            color="pink"
+            :content="surat.length"
+        >
+        Surat
+        </v-badge>
+    </v-btn>
     <v-row>
         <v-col
             dense
@@ -24,18 +39,31 @@
                 </v-card-actions>
             </v-card>
         </v-col>
-        </v-row>
+    </v-row>
+</div>
 </template>
 
 <script>
 import Modal from "./Form";
+import {getSuratPenduduk} from "@Plugins/api";
+
 export default {
     components: {
         Modal
     },
     data : () => ({
-        surats : ["Surat-A", "Surat-B", "Surat-C", "Surat-D", "Surat-E", "Surat-F", "Surat-G", "Surat-H", "Surat-I"]
-    })
+        surats : ["Surat-A", "Surat-B", "Surat-C", "Surat-D", "Surat-E", "Surat-F", "Surat-G", "Surat-H", "Surat-I"],
+        router : false,
+        surat: []
+    }),
+    created(){
+        getSuratPenduduk(this.$route.params.id).then(result => {
+            this.surat = result
+        }).catch((err) => {
+            console.log(err.response);
+            alert(err.response);
+        })
+    }
 }
 </script>
 

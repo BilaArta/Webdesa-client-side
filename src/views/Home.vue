@@ -75,7 +75,7 @@ export default {
                     .then((res) => {
                         // console.log(res);
                         this.$emit('updateToken', true)
-                        this.$router.push({name: 'Dashboard Admin', params: {id: res.id}})
+                        this.$router.push({name: 'Dashboard Admin', params: {id: res.data}})
                     })
                     .catch((err) => console.log(err))
             }   
@@ -86,6 +86,9 @@ export default {
         resetValidation() {
             this.$refs.form.resetValidation();
         }
-},
+    },
+    mounted(){
+        console.log('admin page');
+    }
 }
 </script>

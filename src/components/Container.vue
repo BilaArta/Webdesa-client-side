@@ -4,6 +4,7 @@
         <main>
             <v-container>
                 <router-view  @updateToken="checkToken"></router-view>
+                 
             </v-container>
         </main>
         <Footer></Footer>
@@ -21,12 +22,13 @@ export default {
   },
   data: () => ({
     token : false,
+    
   }),
   methods: {
     checkToken(){
       if(localStorage.getItem('token')){
           getUser().then((res) => {
-            console.log(res);
+            // console.log(res);
             if(!res.error){
               this.token = true
             }else{
@@ -48,6 +50,9 @@ export default {
       }
     }
   },
+  created() {
+    console.log(this.$route.name);
+  }
 }
 </script>
 

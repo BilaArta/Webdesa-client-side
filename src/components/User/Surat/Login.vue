@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { checkWarga } from "../../../plugins/api";
+import { checkWarga } from "@Plugins/api";
 export default {
     data: () => ({
         nik : "",
@@ -50,10 +50,11 @@ export default {
             
             checkWarga({'nik' : this.nik})
                 .then((res) => {
-                    this.$router.push({name: "Cetak surat",params: {id: res.id, nama: res.name}})
+                    this.$router.push({name: "Cetak surat",params: {id: res[0].id, nama: res[0].nama}})
                 })
                 .catch(err => {
-                    alert("Status code ["+err.response.status+"] : "+err.response.data.msg)
+                    // console.log(err.response);
+                    alert("Status code ["+err.response.status+"] : "+err.response.data)
                 })
         }
     }
