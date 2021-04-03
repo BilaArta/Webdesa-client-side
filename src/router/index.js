@@ -38,6 +38,11 @@ const routes = [
         name: 'Dashboard Admin',
         component: () => import( '../views/Admin.vue')
       },
+      {
+        path: '/strukturOrganisasi',
+        name: 'Struktur Organisasi',
+        component: () => import( '../views/StrukturOrganisasi.vue')
+      },
     ]
   }
 ]

@@ -2,7 +2,7 @@
   <v-app>
         <Header :token="token" @updateToken="checkToken"></Header>
         <main>
-            <v-container>
+            <v-container fluid>
                 <router-view  @updateToken="checkToken"></router-view>
                  
             </v-container>
@@ -57,5 +57,10 @@ export default {
 </script>
 
 <style>
+.container {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 
 </style>

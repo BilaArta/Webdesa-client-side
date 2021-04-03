@@ -1,7 +1,7 @@
 <template>
   <v-footer padless>
     <v-col
-      class="red text-center white--text"
+      class="text-center white--text"
       cols="12"
       
     >
@@ -27,6 +27,9 @@ html {
     position: relative;
     bottom: 0;
     width: 100%;
+}
+.v-footer {
+      background-color: #ff3f34 !important; 
 }
 
 .footer div {

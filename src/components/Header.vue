@@ -3,9 +3,8 @@
         <v-app-bar
             class="pl-8 pr-8"
         >
-            <v-app-bar-nav-icon>LOGO</v-app-bar-nav-icon>
+            <v-toolbar-title class="white--text">WEBSITE DESA TIBUBIU</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-toolbar-title>WEBSITE DESA TIBUBIU</v-toolbar-title>
 
             <v-spacer></v-spacer>
                 <router-link to="/berita">
@@ -43,7 +42,9 @@
                                 link
                             >
                             <v-list-item-title>
-                                    {{ item.title }}    
+                                    <router-link :to="'/'+item.path" class="mr-2 ml-2 black--text">
+                                        {{ item.title }}    
+                                    </router-link>
                             </v-list-item-title>
                             </v-list-item>
                         </v-list>
@@ -67,7 +68,6 @@
                         medium
                         tile
                         class="mr-2 ml-2 black--text"
-                        color="grey lighten-4"
                     >
                         Cetak Surat
                     </v-btn>
@@ -79,7 +79,6 @@
                     small
                     tile
                     class="mr-2 ml-2 black--text"
-                    color="grey lighten-4"
                     @click="logout"
                 >
                     Logout                
@@ -97,8 +96,6 @@ export default {
     },
     data: () => ({
         items: [
-            { title: 'Visi & Misi' , path: 'visimisi'},
-            { title: 'Sejarah Desa', path: 'sejarahDesa' },
             { title: 'Struktur Organisasi', path: 'strukturOrganisasi' },
             { title: 'RPJMDES', path: 'rpjmdes' },
         ],
@@ -116,8 +113,12 @@ export default {
 
 <style>
 
-.v-toolbar__content a{
+a {
     text-decoration: none;
 }   
+
+.v-app-bar {
+    background-color: #ff3f34 !important; 
+}
 
 </style>
