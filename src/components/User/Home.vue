@@ -20,7 +20,7 @@
                 </v-img>
             </v-col>
             <v-col cols="6">
-                <p class="text-center text-lg-h3 white--text"><b>Om Swastyastu <br>Selamat Datang di Website Desa Tibubiu</b></p>
+                <p class="text-center text-lg-h3 black--text"><b>Om Swastyastu <br>Selamat Datang di Website Desa Tibubiu</b></p>
             </v-col>
             <v-col cols="3" align="center">
                 <v-img 
@@ -35,7 +35,7 @@
         </v-row>
         <v-carousel 
             cycle
-            height="700px"
+            height="600px"
             width="100%"
             show-arrows-on-hover
             id="carousel"
@@ -53,13 +53,16 @@
                 class="pa-4"
             >
                 <v-col
-                    cols="3"
+                    cols="auto"
+                    md="1"
                     justify="center"
                     align="center"
                 >
                 </v-col>
                 <v-col
-                    cols="6"
+                    cols="12"
+                    
+                    md="10"
                     justify="center"
                     align="center"
                 >
@@ -69,7 +72,8 @@
                     
                 </v-col>
                 <v-col
-                    cols="3"
+                    cols="auto"
+                    md="1"
                     justify="center"
                     align="center"
                 >
@@ -79,25 +83,26 @@
                     justify="center"
                     cols="12"
                 >
-                    <img class="mt-n4 mb-n4" src="@/assets/Goals.svg" alt="Visi & Misi" width="500px" height="350px">
+                    <img class="mt-n4 mb-n4" src="@/assets/Goals.svg" alt="Visi & Misi" width="100%" height="350px">
                 </v-col>
+
                 <v-col
-                    cols="2"
-                    justify="center"
-                    align="center"
-                >
-                </v-col>
-                <v-col
-                    cols="4"
+                    cols="12"
+                    sm="12"
+                    md="6"
+                    lg="6"
                     justify="center"
                     
                 >
-                <p class="text-lg-h3 text-center">Visi</p>
-                <hr>
-                <p class="text-lg-h6 text-justify pa-4"> <span class="ml-8"></span> Peningkatan Kesejahteraan Masyarakat Desa Tibubiu Melalui Pembangunan Di Segala Bidang Yang Menitik Beratkan Pada Sektor Pertanian Dan Sektor Pariwisata Dalam Arti Luas.</p> 
+                    <p class="text-lg-h3 text-center">Visi</p>
+                    <hr>
+                    <p class="text-lg-h6 text-justify pa-4"> <span class="ml-8"></span> Peningkatan Kesejahteraan Masyarakat Desa Tibubiu Melalui Pembangunan Di Segala Bidang Yang Menitik Beratkan Pada Sektor Pertanian Dan Sektor Pariwisata Dalam Arti Luas.</p> 
                 </v-col>
                 <v-col
-                    cols="4"
+                    cols="12"
+                    sm="12"
+                    md="6"
+                    lg="6"
                     justify="center"
                     
                 >
@@ -112,12 +117,6 @@
                             <li>Penguatan potensi ekonomi skala desa secara optimal dengan pengembangan sektor ekonomi pedesaan.</li>
                         </ol>
                     </p>
-                </v-col>
-                <v-col
-                    cols="2"
-                    justify="center"
-                    align="center"
-                >
                 </v-col>
             </v-row>
         </div>

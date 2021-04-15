@@ -2,10 +2,11 @@ const path = require('path');
 
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production'
-    ? '/Project-Web-Desa-Client-Side/'
-    : '/',
-    
+  // publicPath: process.env.NODE_ENV === 'production'
+  //   ? '/Project-Web-Desa-Client-Side/'
+  //   : '/',
+
+  publicPath: process.env.VUE_APP_PUBLIC_PATH || '/',
   "transpileDependencies": [
     "vuetify"
   ],
@@ -18,5 +19,5 @@ module.exports = {
       }
     }
   },
-  // publicPath: process.env.VUE_APP_PUBLIC_PATH
+
 }
