@@ -33,7 +33,7 @@
                     height="auto"
                     width="auto"
                     alt="Card image"
-                    :src="datasets.file"
+                    :src="'http://127.0.0.1:8000/'+datasets.file"
                 >
                     <!-- :src="path + datasets.file" -->
                 </v-img>

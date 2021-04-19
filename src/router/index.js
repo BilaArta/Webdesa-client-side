@@ -43,6 +43,11 @@ const routes = [
         name: 'Struktur Organisasi',
         component: () => import( '../views/StrukturOrganisasi.vue')
       },
+      {
+        path: '/sejarah',
+        name: 'Sejarah',
+        component: () => import('../views/Sejarah')
+      },
     ]
   }
 ]

@@ -61,10 +61,10 @@
                 </v-col>
                 <v-col
                     cols="12"
-                    
                     md="10"
                     justify="center"
                     align="center"
+                    class="mt-n8"
                 >
                     <p class="text-lg-h3"> Visi & Misi</p>
                     <hr>
@@ -82,6 +82,7 @@
                     align="center"
                     justify="center"
                     cols="12"
+                    class="mt-n12"
                 >
                     <img class="mt-n4 mb-n4" src="@/assets/Goals.svg" alt="Visi & Misi" width="100%" height="350px">
                 </v-col>
@@ -92,6 +93,7 @@
                     md="6"
                     lg="6"
                     justify="center"
+                    class="mt-n8"
                     
                 >
                     <p class="text-lg-h3 text-center">Visi</p>
@@ -104,6 +106,7 @@
                     md="6"
                     lg="6"
                     justify="center"
+                    class="mt-n8"
                     
                 >
                     <p class="text-lg-h3 text-center">Misi</p>

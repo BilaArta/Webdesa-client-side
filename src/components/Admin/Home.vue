@@ -1,16 +1,16 @@
 <template>
     <div>
-         <v-tabs vertical>
+         <v-tabs horizontal>
             <v-tab>
                 Kelola Berita
             </v-tab>
             <v-tab>
                 Input Berita
             </v-tab>
-            <v-tab>
+            <!-- <v-tab>
                 Surat Penduduk
-            </v-tab>
-
+            </v-tab> -->
+            
             <v-tab-item>
                 <v-card 
                     flat   
