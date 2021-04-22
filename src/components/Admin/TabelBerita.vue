@@ -160,7 +160,7 @@
 </template>
 <script>
 
-import {deleteBerita, getBeritaTable  } from "../../plugins/api";
+import {deleteBerita, getBeritaTable  } from "@Plugins/api";
 export default { 
 
     watch: {

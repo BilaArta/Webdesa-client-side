@@ -48,6 +48,11 @@ const routes = [
         name: 'Sejarah',
         component: () => import('../views/Sejarah')
       },
+      {
+        path: '/rpjmdes',
+        name: 'RPJMDES',
+        component: () => import('../views/Rpjmdes')
+      },
     ]
   }
 ]

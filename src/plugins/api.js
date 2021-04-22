@@ -1,9 +1,8 @@
 import axios from "axios"
 import { setHeaderToken, removeHeaderToken } from "../utils/auth";
 
-if (process.env.NODE_ENV == 'local'){
-    axios.defaults.baseURL = process.env.VUE_APP_apiUrl
-}
+axios.defaults.baseURL = process.env.VUE_APP_BASE_API
+
 
 export function login(email, password) {
     return new Promise((resolve, rejected) => {
@@ -87,6 +86,22 @@ export function getBeritaTable(){
 export function inputBerita(news){
     return new Promise((resolve,rejected) => {
         axios.post('/berita', news)
+            .then(result => resolve(result.data))
+            .catch(err => rejected(err));
+    })
+}
+
+export function inputRpjmdes(file){
+    return new Promise((resolve,rejected) => {
+        axios.post('/rpjmdes', file)
+            .then(result => resolve(result.data))
+            .catch(err => rejected(err));
+    })
+}
+
+export function getRpjmdes(){
+    return new Promise((resolve,rejected) => {
+        axios.get('/rpjmdes')
             .then(result => resolve(result.data))
             .catch(err => rejected(err));
     })

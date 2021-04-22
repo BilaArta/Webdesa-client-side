@@ -36,6 +36,7 @@
                     label="Input Image png/jpeg/jpg"
                     ref="file"
                     v-on:change="onImageChange"
+                    show-size
                 ></v-file-input>
                 <div class="d-flex justify-content-center" v-if="image">
                     <img :src="image" class="img-responsive" height="240px" width="320px">
@@ -61,7 +62,9 @@
 </template>
 
 <script>
-import {  getCategories, inputBerita } from "../../plugins/api";
+
+import {  getCategories, inputBerita } from "@Plugins/api";
+
 export default {
     data : () => ({
         news: {

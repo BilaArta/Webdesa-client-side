@@ -1,7 +1,7 @@
 <template>
   <div>
         <v-skeleton-loader
-            type="article, card-image"
+            type="card"
             :loading="loading"
             class="mb-4"
         >
@@ -23,7 +23,7 @@
                 </v-card-subtitle>
                 <hr class="mt-n3 mb-n2">
                 <v-card-text>
-                    <span>{{getDate[0]}} : {{getDate[1]}}</span>
+                    <span>{{getDate[0]}}</span>
                     <br>
                     <span class="black--text">
                         {{datasets.deskripsi.slice(0, 100)}}
@@ -33,7 +33,7 @@
                     height="auto"
                     width="auto"
                     alt="Card image"
-                    :src="'http://127.0.0.1:8000/'+datasets.file"
+                    :src="path+datasets.file"
                 >
                     <!-- :src="path + datasets.file" -->
                 </v-img>
@@ -46,7 +46,7 @@
 export default {
     props: ['datasets', 'loading'],
     data : () => ({
-        path: process.env.VUE_APP_IMAGE,
+        path: process.env.VUE_APP_STORAGE,
     }),
     computed: {
         getDate:{
@@ -60,6 +60,9 @@ export default {
                 return [null]
             }
         }   
+    },
+    created(){
+        console.log(this.datasets);
     },
 }
 </script>

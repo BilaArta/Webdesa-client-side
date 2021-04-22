@@ -1,16 +1,9 @@
 <template>
     <div>
-        <v-row
-            v-for="(item, i) in news"
-            :key="i"
-            no-gutters
-        >
-        <v-fab-transition
-
-        >
+        <v-fab-transition>
             <v-btn
+                id="fab"
                 v-show="fab"
-                color="primary"
                 fixed
                 dark
                 bottom
@@ -22,12 +15,127 @@
                 <v-icon color="black">mdi-chevron-up</v-icon>
             </v-btn>
         </v-fab-transition>
-            <v-col cols="3">
+        <v-row
+            v-for="(item, i) in news"
+            :key="i"
+            class="pt-4"
+            no-gutters
+        >
+            <v-col
+                cols="12"
+                class="mt-n4 pa-4 d-flex d-sm-none"
+
+            >
+                <v-dialog
+                    
+                    v-if="i == 0"
+                    v-model="dialog"
+                    hide-overlay
+                    transition="dialog-top-transition"
+                >
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-btn
+                            class="pa-4"
+                            color="#f1f2f6"
+                            light
+                            v-bind="attrs"
+                            v-on="on"
+                            block
+                        >
+                        Pencarian Berita
+                        </v-btn>
+                    </template>
+                    <v-card>
+        <v-toolbar
+          dark
+          color="primary"
+        >
+          <v-btn
+            icon
+            dark
+            @click="dialog = false"
+          >
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+          <v-toolbar-title>Settings</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-toolbar-items>
+            <v-btn
+              dark
+              text
+              @click="dialog = false"
+            >
+              Save
+            </v-btn>
+          </v-toolbar-items>
+        </v-toolbar>
+        <v-list
+          three-line
+          subheader
+        >
+          <v-subheader>User Controls</v-subheader>
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title>Content filtering</v-list-item-title>
+              <v-list-item-subtitle>Set the content filtering level to restrict apps that can be downloaded</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title>Password</v-list-item-title>
+              <v-list-item-subtitle>Require password for purchase or use password to restrict purchase</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+        <v-divider></v-divider>
+        <v-list
+          three-line
+          subheader
+        >
+          <v-subheader>General</v-subheader>
+          <v-list-item>
+            <v-list-item-action>
+              <v-checkbox v-model="notifications"></v-checkbox>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>Notifications</v-list-item-title>
+              <v-list-item-subtitle>Notify me about updates to apps or games that I downloaded</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-action>
+              <v-checkbox v-model="sound"></v-checkbox>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>Sound</v-list-item-title>
+              <v-list-item-subtitle>Auto-update apps at any time. Data charges may apply</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-action>
+              <v-checkbox v-model="widgets"></v-checkbox>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>Auto-add widgets</v-list-item-title>
+              <v-list-item-subtitle>Automatically add home screen widgets</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-card>
+                </v-dialog>
+            </v-col>
+            <v-col 
+                class="d-none d-sm-flex"
+                sm="3"
+                md="3"
+                lg="3"
+                xl="3"
+            >
                 <v-card 
                     v-if="i == 0"
                     elevation="4"
                     outlined
-                    class="pa-4"
+                    class="pa-4 sticky-card"
                 >
                     <p class="subtitle-2" v-text="'Pencarian berdasarkan judul berita :'"></p>
                     <v-autocomplete
@@ -50,28 +158,39 @@
                     <v-btn-toggle
                         v-model="sorting"
                         mandatory
+                        tile
+                        id="btnToggle"
                     >
                         <v-btn>Terakhir</v-btn>
                         <v-btn>Terbaru</v-btn>
                     </v-btn-toggle>
                 </v-card>
+                <v-card
+                    v-else
+                >
+
+                </v-card>
             </v-col>
-            <v-col cols="9">
+            <v-col 
+                cols="12"
+                sm="9"
+                md="9"
+                lg="9"
+                xl="9"
+            >
                     <News :datasets="item" :loading="loading" ></News>
             </v-col>
-            <!-- <v-col cols="3">
-
-            </v-col> -->
         </v-row>
-            <div class="text-center">
-                <v-pagination
-                    v-model="pagination.current"
-                    :length="pagination.total"
-                    @input="onPageChange"
-                    prev-icon="mdi-menu-left"
-                    next-icon="mdi-menu-right"
-                ></v-pagination>
-            </div>
+
+        <div class="text-center pa-4 mb-2">
+            <v-pagination
+                v-model="pagination.current"
+                :length="pagination.total"
+                @input="onPageChange"
+                prev-icon="mdi-menu-left"
+                next-icon="mdi-menu-right"
+            ></v-pagination>
+        </div>
     </div>
 </template>
 
@@ -95,6 +214,10 @@ export default {
         selectedJudul: '',
         selectedJenis: '',
         breakPoint: "",
+        dialog: false,
+        notifications: false,
+        sound: true,
+        widgets: false,
     }),
     methods : {
         onPageChange(){
@@ -183,7 +306,6 @@ export default {
                 this.pagination.total = data.last_page
                 this.news =  data.data  
                 this.loading = false
-                console.log(data.data);
             })
     },
     watch:{
@@ -248,10 +370,17 @@ export default {
     background-color: #dcdde1;
 }
 .sticky-card {
-  position: fixed;
-  z-index: 1; 
-  width: 300px;
-  max-width: 300px;
+    position: fixed;
+    z-index: 1;
+    width: calc(25% - 4px);
+}
+
+#btnToggle {
+  flex-direction: column;
+}
+
+#fab {
+    color: rgb(60, 58, 58);
 }
 
 </style>

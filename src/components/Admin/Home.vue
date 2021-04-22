@@ -7,6 +7,9 @@
             <v-tab>
                 Input Berita
             </v-tab>
+            <v-tab>
+                Input Rpjmdes
+            </v-tab>
             <!-- <v-tab>
                 Surat Penduduk
             </v-tab> -->
@@ -27,10 +30,20 @@
                 </v-card>
             </v-tab-item>
             <v-tab-item>
+                <v-card 
+                    flat
+                    class="pa-4"    
+                >
+                    <Rpjmdes></Rpjmdes>
+                </v-card>
+            </v-tab-item>
+            <!-- <v-tab-item>
                 <v-card flat>
                     <TableSurat></TableSurat>
                 </v-card>
-            </v-tab-item>
+            </v-tab-item> -->
+
+
          </v-tabs>
     
     </div>
@@ -41,14 +54,16 @@
 <script>
 import Form from "./InputBerita";
 import Tableberita from "./TabelBerita";
-import { getUser } from "../../plugins/api";
-import TableSurat from './Surat/Container';
+import { getUser } from "@Plugins/api";
+// import TableSurat from './Surat/Container';
+import Rpjmdes from './InputRpjmdes';
 
 export default {
     components: {
         Form,
         Tableberita,
-        TableSurat
+        // TableSurat,
+        Rpjmdes
     },
     data: () => ({
         dataset: [],

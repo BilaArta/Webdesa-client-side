@@ -25,40 +25,38 @@
                             Berita              
                         </v-btn>
                     </router-link>
-                    <router-link to="/">
-                        <v-menu
-                            open-on-hover
-                            offset-y
-                        >
-                            <template v-slot:activator="{ on, attrs }">
-                                <v-btn
-                                v-if="!token"
-                                elevation="4"
-                                medium
-                                v-bind="attrs"
-                                v-on="on"
-                                class="mr-2 ml-2"
-                                >
-                                Profile <v-icon>mdi-chevron-down</v-icon>
-                                </v-btn>
-                            </template>
 
-                            <v-list>
-                                <v-list-item
-                                    v-for="(item, index) in items"
-                                    :key="index"
-                                    link
-                                >
-                                <v-list-item-title>
-                                        <router-link :to="'/'+item.path" class="mr-2 ml-2 black--text">
-                                            {{ item.title }}    
-                                        </router-link>
-                                </v-list-item-title>
-                                </v-list-item>
-                            </v-list>
-                        </v-menu>
-                            
-                    </router-link>
+                    <v-menu
+                        open-on-click
+                        offset-y
+                    >
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-btn
+                            v-if="!token"
+                            elevation="4"
+                            medium
+                            v-bind="attrs"
+                            v-on="on"
+                            class="mr-2 ml-2"
+                            >
+                            Profile <v-icon>mdi-chevron-down</v-icon>
+                            </v-btn>
+                        </template>
+
+                        <v-list>
+                            <v-list-item
+                                v-for="(item, index) in items"
+                                :key="index"
+                                link
+                            >
+                            <v-list-item-title>
+                                    <router-link :to="'/'+item.path" class="mr-2 ml-2 black--text">
+                                        {{ item.title }}    
+                                    </router-link>
+                            </v-list-item-title>
+                            </v-list-item>
+                        </v-list>
+                    </v-menu>
                     
                     <v-btn
                         v-if="token"
@@ -122,6 +120,12 @@
                      </router-link>
                 </v-list-item>
                 <v-divider></v-divider>
+                <v-list-item>
+                    <router-link to="/rpjmdes">
+                        <v-list-item-action class="text-subtitle-2 ml-4"><b>RPJMDES</b></v-list-item-action>
+                     </router-link>
+                </v-list-item>
+                <v-divider></v-divider>
                 <div v-if="token">
                     <v-list-item>
                         <router-link to="/">
@@ -151,6 +155,7 @@ export default {
         drawer: false,
         group: null,
         items: [
+            {title: "Profile Desa", path:""},
             { title: 'Struktur Organisasi', path: 'strukturOrganisasi' },
             { title: 'RPJMDES', path: 'rpjmdes' },
         ],
