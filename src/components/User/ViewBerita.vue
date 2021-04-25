@@ -1,20 +1,5 @@
 <template>
     <div>
-        <v-fab-transition>
-            <v-btn
-                id="fab"
-                v-show="fab"
-                fixed
-                dark
-                bottom
-                right
-                fab
-                icon
-                @click="btnTopScroll"
-            >
-                <v-icon color="black">mdi-chevron-up</v-icon>
-            </v-btn>
-        </v-fab-transition>
         <v-row
             v-for="(item, i) in news"
             :key="i"
@@ -24,11 +9,10 @@
             <v-col
                 cols="12"
                 class="mt-n4 pa-4 d-flex d-sm-none"
-
+                v-if="i == 0"
             >
                 <v-dialog
                     
-                    v-if="i == 0"
                     v-model="dialog"
                     hide-overlay
                     transition="dialog-top-transition"
@@ -46,82 +30,51 @@
                         </v-btn>
                     </template>
                     <v-card>
-        <v-toolbar
-          dark
-          color="primary"
-        >
-          <v-btn
-            icon
-            dark
-            @click="dialog = false"
-          >
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-          <v-toolbar-title>Settings</v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-toolbar-items>
-            <v-btn
-              dark
-              text
-              @click="dialog = false"
-            >
-              Save
-            </v-btn>
-          </v-toolbar-items>
-        </v-toolbar>
-        <v-list
-          three-line
-          subheader
-        >
-          <v-subheader>User Controls</v-subheader>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title>Content filtering</v-list-item-title>
-              <v-list-item-subtitle>Set the content filtering level to restrict apps that can be downloaded</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title>Password</v-list-item-title>
-              <v-list-item-subtitle>Require password for purchase or use password to restrict purchase</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-        <v-divider></v-divider>
-        <v-list
-          three-line
-          subheader
-        >
-          <v-subheader>General</v-subheader>
-          <v-list-item>
-            <v-list-item-action>
-              <v-checkbox v-model="notifications"></v-checkbox>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>Notifications</v-list-item-title>
-              <v-list-item-subtitle>Notify me about updates to apps or games that I downloaded</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-action>
-              <v-checkbox v-model="sound"></v-checkbox>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>Sound</v-list-item-title>
-              <v-list-item-subtitle>Auto-update apps at any time. Data charges may apply</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-action>
-              <v-checkbox v-model="widgets"></v-checkbox>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>Auto-add widgets</v-list-item-title>
-              <v-list-item-subtitle>Automatically add home screen widgets</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </v-card>
+                        <v-toolbar
+                        light
+                        color="#f1f2f6"
+                        >
+                        <v-btn
+                            icon
+                            light
+                            @click="dialog = false"
+                        >
+                            <v-icon>mdi-close</v-icon>
+                        </v-btn>
+                        <v-toolbar-title>Pencarian berita</v-toolbar-title>
+                        </v-toolbar>
+                        <div class="pa-4">
+                            <p class="subtitle-2" v-text="'Pencarian berdasarkan judul berita :'"></p>
+                            <v-autocomplete
+                                v-model="selectedJudul"
+                                :items="judul"
+                                clearable
+                                filled
+                                dense
+                                label="Judul Berita"
+                            ></v-autocomplete>
+                            <p class="subtitle-2" v-text="'Pencarian berdasarkan jenis berita :'"></p>
+                            <v-select
+                                v-model="selectedJenis"
+                                :items="jenis"
+                                clearable
+                                filled
+                                chips
+                                dense
+                                label="Jenis Berita"
+                            ></v-select>
+                            <p class="subtitle-2" v-text="'Urutkan berdasarkan berita :'"></p>
+                            <v-btn-toggle
+                                v-model="sorting"
+                                mandatory
+                                dense
+                                tile
+                            >
+                                <v-btn>Terbaru</v-btn>
+                                <v-btn>Terlama</v-btn>
+                            </v-btn-toggle>
+                        </div>
+                    </v-card>
                 </v-dialog>
             </v-col>
             <v-col 
@@ -131,6 +84,7 @@
                 lg="3"
                 xl="3"
             >
+                
                 <v-card 
                     v-if="i == 0"
                     elevation="4"
@@ -161,8 +115,8 @@
                         tile
                         id="btnToggle"
                     >
-                        <v-btn>Terakhir</v-btn>
                         <v-btn>Terbaru</v-btn>
+                        <v-btn>Terlama</v-btn>
                     </v-btn-toggle>
                 </v-card>
                 <v-card
@@ -178,7 +132,15 @@
                 lg="9"
                 xl="9"
             >
-                    <News :datasets="item" :loading="loading" ></News>
+                <v-skeleton-loader
+                    type="card"
+                    :loading="loading"
+                    class="mb-4"
+                >
+                    <News :datasets="item" :loading="loading" >
+
+                    </News>
+                </v-skeleton-loader>
             </v-col>
         </v-row>
 
@@ -199,7 +161,6 @@ import {getBerita, getBeritaTable, searchBeritaByJenis, searchBeritaBySorting, s
 import News from "./GetBerita";
 export default {
     data : () => ({
-        fab : false,
         news: [],
         sorting: 0,
         isSorted: false,
@@ -213,11 +174,7 @@ export default {
         judul: [],
         selectedJudul: '',
         selectedJenis: '',
-        breakPoint: "",
         dialog: false,
-        notifications: false,
-        sound: true,
-        widgets: false,
     }),
     methods : {
         onPageChange(){
@@ -232,14 +189,6 @@ export default {
             }else{
                 this.getDataBerita()
             }
-        },
-        handleScroll () {
-            // console.log(event);
-            this.fab = window.scrollY > 0;
-        },
-        btnTopScroll(){
-            this.fab = false
-            window.scrollTo(0,0)
         },
         getJudulAndJenis(){
             getBeritaTable().then((res) => {
@@ -260,6 +209,7 @@ export default {
                     this.pagination.total = data.last_page
                     this.news =  data.data  
                     this.loading = false
+                    this.dialog = false
                 })
         },
         getSearchingByJenis(){
@@ -270,6 +220,7 @@ export default {
                 this.news =  data.data  
                 this.jenis
                 this.loading = false
+                this.dialog = false
             })
         },
         getSortingData(val){
@@ -279,6 +230,7 @@ export default {
                     this.pagination.total = data.last_page
                     this.news =  data.data
                     this.loading = false
+                    this.dialog = false
                 })
         },
         getSearchingAndSortedData(){
@@ -288,15 +240,12 @@ export default {
                     this.pagination.total = data.last_page
                     this.news =  data.data
                     this.loading = false
+                    this.dialog = false
                 })
         }
 
     },
-    destroyed () {
-        window.removeEventListener('scroll', this.handleScroll);
-    },
     created() {
-        window.addEventListener('scroll', this.handleScroll);
         this.loading = true
         // this.breakPoint = this.$vuetify.breakpoint.name
         this.getJudulAndJenis();

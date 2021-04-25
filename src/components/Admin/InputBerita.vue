@@ -84,10 +84,14 @@ export default {
             data.append('jenis', this.jenis.indexOf(this.news.jenis));
 
             inputBerita(data)
-                .then(response => (
+                .then(response => {
                     console.log(response)
-                ))
-                .catch(error => console.log(error))
+                    alert("Berhasil upload berita")
+                })
+                .catch(error => {
+                    console.log(error)
+                    alert(error)
+                })
                 .finally(() => this.loading = false)
         },
         onImageChange(e) {
@@ -110,7 +114,7 @@ export default {
     },
     created() {
         getCategories().then(result => {
-            console.log(result);
+            // console.log(result);
             this.jenis = result.data.map((data) => data.name)
         })
     }

@@ -47,10 +47,14 @@ export default {
             data.append('name', this.data.name);
 
             inputRpjmdes(data)
-                .then(response => (
+                .then(response => {
                     console.log(response)
-                ))
-                .catch(error => console.log(error))
+                    alert("Berhasil upload RPJMDES")
+                })
+                .catch(error => {
+                    console.log(error)
+                    alert(error)
+                })
                 .finally(() => this.loading = false)
         },
     },

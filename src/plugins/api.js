@@ -107,6 +107,14 @@ export function getRpjmdes(){
     })
 }
 
+export function getPdf(file){
+    return new Promise((resolve,rejected) => {
+        axios.get('/rpjmdes/'+ file)
+            .then(result => resolve(result.data))
+            .catch(err => rejected(err));
+    })
+}
+
 export function deleteBerita(news){
     return new Promise((resolve, reject) => {
         axios.delete(`/berita/${news}`)
