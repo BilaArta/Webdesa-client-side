@@ -1,5 +1,15 @@
 <template>
     <div>
+        <div class="text-center">
+            <v-progress-circular
+                    :size="140"
+                    :width="14"
+                    class='mt-12'
+                    color="grey"
+                    indeterminate
+                    v-show="loading"
+            ></v-progress-circular>
+        </div>
         <v-row
             v-for="(item, i) in news"
             :key="i"
@@ -11,6 +21,7 @@
                 class="mt-n4 pa-4 d-flex d-sm-none"
                 v-if="i == 0"
             >
+            
                 <v-dialog
                     
                     v-model="dialog"
@@ -175,6 +186,7 @@ export default {
         selectedJudul: '',
         selectedJenis: '',
         dialog: false,
+        
     }),
     methods : {
         onPageChange(){
@@ -256,6 +268,7 @@ export default {
                 this.news =  data.data  
                 this.loading = false
             })
+
     },
     watch:{
         breakPoint(){
@@ -264,7 +277,7 @@ export default {
         selectedJenis(){
             console.log(this.selectedJenis);
             this.loading = true;
-            this.news = [];
+            this.news = this.dummy;
             this.pagination.current = 1
             if(!this.selectedJenis){
                 if(this.isSorted){
@@ -314,6 +327,10 @@ export default {
 </script>
 
 <style>
+.v-progress-circular {
+  margin: 1rem;
+}
+
 .mt {
     margin-top: 12px;
     background-color: #dcdde1;

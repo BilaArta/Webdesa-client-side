@@ -1,5 +1,6 @@
 <template>
     <div>
+        
         <Berita></Berita>
     </div>
 </template>
@@ -14,5 +15,6 @@ export default {
 </script>
 
 <style>
+
 
 </style>
